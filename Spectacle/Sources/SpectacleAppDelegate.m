@@ -63,6 +63,10 @@
                                   selector:@selector(applicationDidDeactivate:)
                                       name:NSWorkspaceDidDeactivateApplicationNotification
                                     object:nil];
+  [notificationCenter addObserver:self
+                         selector:@selector(showAccessibilityAccessDialog:)
+                             name:@"SpectacleAccessibilityAPIDisabledNotification"
+                           object:nil];
   [SpectacleUtilities registerDefaultsForBundle:[NSBundle mainBundle]];
   _shortcutMenuItems = @{
                          @"MoveToCenter": _moveToCenterShortcutMenuItem,
@@ -111,8 +115,9 @@
     [self enableStatusItem];
   }
   [self updateShortcutMenuItems];
-  if (!AXIsProcessTrustedWithOptions(NULL)) {
-    [[NSApplication sharedApplication] runModalForWindow:self.accessiblityAccessDialogWindow];
+  NSDictionary *trustOptions = @{(__bridge NSString *)kAXTrustedCheckOptionPrompt: @YES};
+  if (!AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef)trustOptions)) {
+    [self showAccessibilityAccessDialog:self];
   }
 }
 
@@ -268,6 +273,13 @@
     self.disableShortcutsForApplicationMenuItem.state = NSOnState;
   }
   [NSUserDefaults.standardUserDefaults setObject:_disabledApplications.allObjects forKey:@"DisabledApplications"];
+}
+
+- (void)showAccessibilityAccessDialog:(id)sender
+{
+  (void)sender;
+  [NSApp activateIgnoringOtherApps:YES];
+  [self.accessiblityAccessDialogWindow makeKeyAndOrderFront:self];
 }
 
 - (IBAction)openSystemPreferences:(id)sender

@@ -52,6 +52,10 @@
     CFRelease(underlyingElement);
   } else {
     NSLog(@"Unable to obtain the accessibility element with the specified attribute: %@ (error code %d)", attribute, result);
+    if (result == kAXErrorAPIDisabled) {
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"SpectacleAccessibilityAPIDisabledNotification"
+                                                          object:nil];
+    }
   }
   return newElement;
 }

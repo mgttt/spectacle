@@ -10,7 +10,7 @@ BUILD_DIR     = build
 APP_DIR       = $(BUILD_DIR)/Spectacle.app
 CONTENTS      = $(APP_DIR)/Contents
 PREBUILT      = packaging/prebuilt
-VERSION       = 1.2.1
+VERSION       = 1.2.2
 
 CFLAGS = -fobjc-arc -fmodules -fobjc-weak \
 	-isysroot $(SDKROOT) \
@@ -54,9 +54,9 @@ $(CONTENTS)/MacOS/Spectacle: $(OBJS) packaging/Info.plist
 	cp "Spectacle/Resources/Property Lists/Defaults.plist" "$(CONTENTS)/Resources/Defaults.plist"
 	cp -R Spectacle/Resources/Localizations/en.lproj $(CONTENTS)/Resources/
 	# drop Sparkle keys from a copy already in packaging/Info.plist
-	codesign --force --deep --sign - --options runtime \
-		--entitlements "Spectacle/Supporting Files/Spectacle.entitlements" \
-		$(APP_DIR)
+	# Ad-hoc, no Hardened Runtime: HR + stale TCC from the 2016 Developer ID
+	# build yields kAXErrorAPIDisabled (-25211) while the app still looks trusted.
+	codesign --force --deep --sign - $(APP_DIR)
 	file $@
 
 clean:
@@ -67,8 +67,8 @@ install: app
 	-killall Spectacle 2>/dev/null || true
 	rm -rf /Applications/Spectacle.app
 	cp -R $(APP_DIR) /Applications/Spectacle.app
-	codesign --force --deep --sign - --options runtime \
-		--entitlements "Spectacle/Supporting Files/Spectacle.entitlements" \
-		/Applications/Spectacle.app
+	codesign --force --deep --sign - /Applications/Spectacle.app
+	-tccutil reset Accessibility com.divisiblebyzero.Spectacle 2>/dev/null || true
+	open "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility"
 	open /Applications/Spectacle.app
-	@echo "Installed /Applications/Spectacle.app — re-enable Accessibility if prompted."
+	@echo "Installed 1.2.2. Toggle Spectacle OFF then ON in Accessibility (TCC was bound to the old signature)."
