@@ -105,12 +105,15 @@
 5. 18 个默认动作 + 循环三分 + undo/redo + 多屏 行为与 1.2 一致（可用现有 spec 当 oracle）。
 6. 不破坏用户已有 `Shortcuts.json`。
 
-## 6. 后续产品延伸（不做在本次修改里）
+## 6. 后续产品延伸（本仓库不再做）
 
-把同一套 Action ID + 几何引擎接到 [`agenterm-cu`](../agenterm/prd/PRD_02_28_agenterm_cu.md)：
+日用停在 1.2.1。吸收合同：[docs/FEATURE-CATALOG.md](docs/FEATURE-CATALOG.md)。
+
+AgenTerm 归口：`prd/PRD_02_32_cu_window_placement.md`（子树 28 下第四个孩子）。
+开工：`plan/plan-v0.1.19.md`（v0.1.18 仍是在制版本）。
 
 ```text
 cu --target current --grant actuate window-place --action left-half [--window HANDLE]
 ```
 
-`cu` 是 agent 命令面，不是给人按的菜单栏 App。快捷键宿主仍是 Spectacle（或它的继任）。几何库应先变成无 UI 的纯函数，两边共用。
+`cu` 是 agent 命令面。热键宿主继续是本 App，直到另开产品决定。

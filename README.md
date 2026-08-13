@@ -4,11 +4,13 @@
 
 Easily organize windows without using a mouse.
 
-**This fork (`mgttt/spectacle`) is for continued work on modern macOS.** Product contract, tech tree, and the “fix first, Rust/cu later” plan:
+**This fork (`mgttt/spectacle`) is the 1.2.1 daily-driver host.** Do not grow features here. Catalog and AgenTerm absorption:
 
+- [docs/FEATURE-CATALOG.md](docs/FEATURE-CATALOG.md) — what `agenterm-cu` will take
 - [PRD.md](PRD.md)
 - [docs/TECH-TREE.md](docs/TECH-TREE.md)
 - [docs/MODERNIZATION-PLAN.md](docs/MODERNIZATION-PLAN.md)
+- AgenTerm: `prd/PRD_02_32_cu_window_placement.md`, start in **v0.1.19**
 
 ## 1.2.1 — macOS 13+ / Apple Silicon
 

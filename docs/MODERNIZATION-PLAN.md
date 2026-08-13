@@ -117,4 +117,6 @@ cu --target current --grant observe|actuate window-place \
 6. Release + runtime codesign，替换 `/Applications/Spectacle.app`，确认警告消失。
 7. 再开 P1 几何双跑。
 
-**P0 微修已落地（1.2.1）**：CLT `Makefile` 出 arm64，Sparkle stub，`SMAppService` 登录项，辅助功能跳转新 URL。本机已 `make install` 替换 `/Applications/Spectacle.app`。完整 Xcode / 公证仍可选，不是日用阻塞。
+**P0 微修已落地（1.2.1）**：CLT `Makefile` 出 arm64，Sparkle stub，`SMAppService` 登录项，辅助功能跳转新 URL。本机已安装日用宿主。完整 Xcode / 公证仍可选，不是日用阻塞。
+
+**停工**：P1/P2 不再在本仓库做。收录见 [FEATURE-CATALOG.md](FEATURE-CATALOG.md)；实现归 AgenTerm PRD 32 / v0.1.19。
