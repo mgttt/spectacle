@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>Spectacle</string>
 	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<string>com.divisiblebyzero.Spectacle</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>ZERO</string>
 	<key>CFBundleVersion</key>
-	<string>0</string>
+	<string>673</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
@@ -28,17 +28,11 @@
 	<true/>
 	<key>NSAppleEventsUsageDescription</key>
 	<string>Spectacle needs permission to move and resize windows of other applications.</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
 	<key>NSMainNibFile</key>
 	<string>Spectacle</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>SUAllowsAutomaticUpdates</key>
-	<false/>
-	<key>SUEnableAutomaticChecks</key>
-	<true/>
-	<key>SUFeedURL</key>
-	<string>https://spectacleapp.com/updates/appcast.xml</string>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_public.pem</string>
 </dict>
 </plist>

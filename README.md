@@ -4,6 +4,26 @@
 
 Easily organize windows without using a mouse.
 
+**This fork (`mgttt/spectacle`) is for continued work on modern macOS.** Product contract, tech tree, and the “fix first, Rust/cu later” plan:
+
+- [PRD.md](PRD.md)
+- [docs/TECH-TREE.md](docs/TECH-TREE.md)
+- [docs/MODERNIZATION-PLAN.md](docs/MODERNIZATION-PLAN.md)
+
+## 1.2.1 — macOS 13+ / Apple Silicon
+
+The last official 1.2 build is Intel-only (2016 SDK) and macOS 26 flags it as deprecated. This fork rebuilds the same app as **arm64** against the current SDK using Command Line Tools only (no Xcode.app):
+
+```sh
+make
+make install    # replaces /Applications/Spectacle.app
+```
+
+Behavior and default shortcuts are unchanged. Sparkle auto-update is stubbed (the old feed is dead). Login items use `SMAppService`. After install, re-enable **System Settings → Privacy & Security → Accessibility** if prompted.
+
+Later the window-action core will move into [`agenterm-cu`](https://github.com/mgttt/agenterm); this tree stays the daily-driver host until then.
+
+
 ## Important Note
 
 **This project is not being actively maintained.** Unfortunately, after almost a decade of on-and-off development I can no longer dedicate the time needed to be a responsible maintainer of this project. Spectacle will remain available for download but please use at your own risk. The source code will continue to be free and open to anyone, so feel free to make Spectacle your own.

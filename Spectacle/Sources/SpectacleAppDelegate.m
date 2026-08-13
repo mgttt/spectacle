@@ -1,7 +1,5 @@
 #import "SpectacleAppDelegate.h"
 
-#import <Sparkle/Sparkle.h>
-
 #import "SpectacleAccessibilityElement.h"
 #import "SpectacleDefaultShortcutHelpers.h"
 #import "SpectacleMigratingShortcutStorage.h"
@@ -108,12 +106,10 @@
   _shortcutsAreDisabledForAnHour = NO;
   [self manageShortcuts];
   [self disableShortcutsIfFrontmostApplicationIsBlacklistedOrDisabled];
-  BOOL automaticallyChecksForUpdates = [userDefaults boolForKey:@"AutomaticUpdateCheckEnabled"];
   BOOL statusItemEnabled = [userDefaults boolForKey:@"StatusItemEnabled"];
   if (statusItemEnabled) {
     [self enableStatusItem];
   }
-  [[SUUpdater sharedUpdater] setAutomaticallyChecksForUpdates:automaticallyChecksForUpdates];
   [self updateShortcutMenuItems];
   if (!AXIsProcessTrustedWithOptions(NULL)) {
     [[NSApplication sharedApplication] runModalForWindow:self.accessiblityAccessDialogWindow];
@@ -276,13 +272,16 @@
 
 - (IBAction)openSystemPreferences:(id)sender
 {
-  NSURL *preferencePaneURL = [NSURL fileURLWithPath:[SpectacleUtilities pathForPreferencePaneNamed:@"Security"]];
-  NSBundle *applicationBundle = NSBundle.mainBundle;
-  NSURL *scriptURL = [applicationBundle URLForResource:@"Security & Privacy System Preferences" withExtension:@"scpt"];
   [[NSApplication sharedApplication] stopModal];
   [self.accessiblityAccessDialogWindow orderOut:self];
-  if (![[[NSAppleScript alloc] initWithContentsOfURL:scriptURL error:nil] executeAndReturnError:nil]) {
-    [[NSWorkspace sharedWorkspace] openURL:preferencePaneURL];
+  NSArray<NSURL *> *urls = @[
+    [NSURL URLWithString:@"x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility"],
+    [NSURL URLWithString:@"x-apple.systempreferences:com.apple.settings.PrivacySecurity.extension?Privacy_Accessibility"],
+  ];
+  for (NSURL *url in urls) {
+    if (url && [[NSWorkspace sharedWorkspace] openURL:url]) {
+      return;
+    }
   }
 }
 

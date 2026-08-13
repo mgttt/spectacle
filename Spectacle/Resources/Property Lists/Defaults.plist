@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>AutomaticUpdateCheckEnabled</key>
-	<true/>
+	<false/>
 	<key>BackgroundAlertSuppressed</key>
 	<false/>
 	<key>BlacklistedApplications</key>
