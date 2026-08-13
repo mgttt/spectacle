@@ -80,4 +80,4 @@ cu --target current --grant actuate window-place \
 - `actuate`；未授权 `refused`；无 AX `unsupported`；约束夹不进 `failed`。
 - 审计写失败则不执行。
 
-v0.1.19 第一刀：几何纯函数 + macOS `current` 一条竖线（半屏/全屏/居中）。thirds 循环、跨屏、larger/smaller、undo 可同版做完或顺延，但 ID 表本文件已经冻住。
+v0.1.19 整图并发（不是半屏 MVP）：全部计算动作的几何核、各 `current` 后端写框、`window-place` 命令与授权、每应用 undo/redo。测调推进。ID 表以本文件为准。
